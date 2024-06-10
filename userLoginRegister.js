@@ -53,11 +53,8 @@ userRouter.post("/login",express.json(),async (req,res,next)=>{
                 res.send(`418/pendingvalidation/${user.mail}`);
             }else{
                 //token generation
-                const token = jwt.sign({
-                    id : user._id,
-                    exp: Math.floor(Date.now() / 1000) + (60)
-                },process.env.SECRET_KEY);
-                res.cookie("token",token,{ httpOnly: true, secure: false});
+                const token = jwt.sign({id : user._id},process.env.SECRET_KEY);
+                res.cookie("token",token,{ httpOnly: true, secure: true,sameSite: 'None'});
                 res.send(`200/success/${user.mail}`);
             }
         }else{
