@@ -57,7 +57,7 @@ userRouter.post("/login",express.json(),async (req,res,next)=>{
                     id : user._id,
                     exp: Math.floor(Date.now() / 1000) + (60)
                 },process.env.SECRET_KEY);
-                res.cookie("token",token,{ httpOnly: true, secure: false, sameSite: 'None' });
+                res.cookie("token",token,{ httpOnly: true, secure: false});
                 res.send(`200/success/${user.mail}`);
             }
         }else{
