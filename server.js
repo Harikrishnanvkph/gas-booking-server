@@ -23,7 +23,7 @@ async function InitiateDatabase(){
 
 async function ConnectToServer(){
     server.listen(port,()=>{
-        console.log(`Connected to Server Successfully! http://localhost:${port}`)
+        console.log(`Connected to Server Successfully!`)
     })
     server.use(cors(corsOptions));
     server.use(express.json());
